@@ -1,0 +1,40 @@
+﻿@model catalogo.Models.Pedido
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center my-4">Order Details</h1>
+
+<div class="container">
+    <div class="bg-light p-4 rounded shadow-sm">
+        <h4 class="mb-3">Pedido</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3 fw-bold">
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Cantidad)
+            </dd>
+            <dt class="col-sm-3 fw-bold">
+                @Html.DisplayNameFor(model => model.IdclienteNavigation)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.IdclienteNavigation.Idcliente)
+            </dd>
+            <dt class="col-sm-3 fw-bold">
+                @Html.DisplayNameFor(model => model.IdproductoNavigation)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.IdproductoNavigation.Idproducto)
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div class="text-center my-4">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a> |
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

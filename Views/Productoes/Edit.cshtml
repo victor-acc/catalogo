@@ -1,0 +1,67 @@
+﻿@model catalogo.Models.Producto
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center my-4">Edit Product</h1>
+
+<h4 class="text-center">Producto</h4>
+<hr />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form asp-action="Edit" enctype="multipart/form-data" class="bg-light p-4 rounded shadow-sm">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <input type="hidden" asp-for="Idproducto" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="Nombreproducto" class="form-label">Nombre del Producto</label>
+                    <input asp-for="Nombreproducto" class="form-control" placeholder="Ingrese el nombre del producto" />
+                    <span asp-validation-for="Nombreproducto" class="text-danger"></span>
+                </div>
+
+                <!-- Mostrar la imagen actual si ya existe -->
+                <div class="form-group mb-3">
+                    @if (Model.Imagen != null && Model.Imagen.Length > 0)
+                    {
+                        <label class="form-label">Imagen Actual:</label>
+                        <div class="mb-2">
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Imagen)" alt="Imagen del producto" class="img-thumbnail" style="width:100px; height:auto;" />
+                        </div>
+                    }
+                    <label asp-for="Imagen" class="form-label">Subir nueva imagen</label>
+                    <input asp-for="Imagen" class="form-control" type="file" />
+                    <span asp-validation-for="Imagen" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Precio" class="form-label">Precio</label>
+                    <input asp-for="Precio" class="form-control" placeholder="Ingrese el precio del producto" />
+                    <span asp-validation-for="Precio" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Stock" class="form-label">Stock</label>
+                    <input asp-for="Stock" class="form-control" placeholder="Ingrese la cantidad en stock" />
+                    <span asp-validation-for="Stock" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <input type="submit" value="Save" class="btn btn-primary btn-lg w-100" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-4">
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

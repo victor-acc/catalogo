@@ -1,0 +1,63 @@
+﻿@model catalogo.Models.Producto
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center">Crear Nuevo Producto</h1>
+    <h4 class="text-muted text-center">Ingresa los detalles del nuevo producto</h4>
+    <hr />
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                <!-- Nombre del Producto -->
+                <div class="form-group mb-3">
+                    <label asp-for="Nombreproducto" class="form-label"></label>
+                    <input asp-for="Nombreproducto" class="form-control" placeholder="Nombre del producto" />
+                    <span asp-validation-for="Nombreproducto" class="text-danger"></span>
+                </div>
+
+                <!-- Imagen del Producto -->
+                <div class="form-group mb-3">
+                    <label asp-for="Imagen" class="form-label"></label>
+                    <input asp-for="Imagen" class="form-control-file" type="file" />
+                    <span asp-validation-for="Imagen" class="text-danger"></span>
+                </div>
+
+                <!-- Precio del Producto -->
+                <div class="form-group mb-3">
+                    <label asp-for="Precio" class="form-label"></label>
+                    <input asp-for="Precio" class="form-control" placeholder="Precio del producto" />
+                    <span asp-validation-for="Precio" class="text-danger"></span>
+                </div>
+
+                <!-- Stock del Producto -->
+                <div class="form-group mb-4">
+                    <label asp-for="Stock" class="form-label"></label>
+                    <input asp-for="Stock" class="form-control" placeholder="Cantidad de stock" />
+                    <span asp-validation-for="Stock" class="text-danger"></span>
+                </div>
+
+                <!-- Botón Crear -->
+                <div class="form-group">
+                    <input type="submit" value="Crear Producto" class="btn btn-success w-100" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <a asp-action="Index" class="btn btn-outline-secondary">Volver a la lista</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

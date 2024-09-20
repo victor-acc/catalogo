@@ -1,0 +1,61 @@
+﻿@model catalogo.Models.Producto
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center my-4">Product Details</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="bg-light p-4 rounded shadow-sm">
+                <h4 class="text-center mb-4">Producto</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-4 font-weight-bold">
+                        @Html.DisplayNameFor(model => model.Nombreproducto)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Nombreproducto)
+                    </dd>
+
+                    @if (Model.Imagen != null && Model.Imagen.Length > 0)
+                    {
+                        <dt class="col-sm-4 font-weight-bold">Imagen</dt>
+                        <dd class="col-sm-8">
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Imagen)" alt="Imagen del producto" class="img-fluid" style="max-width: 200px; height: auto;" />
+                        </dd>
+                    }
+                    else
+                    {
+                        <dt class="col-sm-4 font-weight-bold">Imagen</dt>
+                        <dd class="col-sm-8">
+                            <span>No image available</span>
+                        </dd>
+                    }
+
+                    <dt class="col-sm-4 font-weight-bold">
+                        @Html.DisplayNameFor(model => model.Precio)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Precio)
+                    </dd>
+
+                    <dt class="col-sm-4 font-weight-bold">
+                        @Html.DisplayNameFor(model => model.Stock)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Stock)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center my-4">
+    <a asp-action="Edit" asp-route-id="@Model?.Idproducto" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary ml-2">Back to List</a>
+</div>
